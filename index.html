@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodMoon Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1rem;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BloodMoon Calculator</h1>
+        <p>Enter the current day to calculate the next BloodMoon.</p>
+        <input type="number" id="currentDay" placeholder="Enter current day">
+        <button onclick="calculateDaysLeft()">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const BLOODMOON_DAY = 7;
+
+        function calculateDaysLeft() {
+            const currentDay = parseInt(document.getElementById('currentDay').value);
+            if (isNaN(currentDay)) {
+                document.getElementById('result').innerText = "Please enter a valid number.";
+                return;
+            }
+            
+            const remainder = currentDay % BLOODMOON_DAY;
+            const daysLeft = BLOODMOON_DAY - remainder;
+            const nextBloodMoon = currentDay + daysLeft;
+
+            document.getElementById('result').innerText = `Next BloodMoon: ${nextBloodMoon} : ${daysLeft} days left`;
+        }
+    </script>
+</body>
+</html>
